@@ -15,8 +15,8 @@ class HomeView extends StatelessWidget {
         body: PageView(
           scrollDirection: Axis.vertical,
           children: [
-            LoginSection(),
-            RegisterSection(),
+            LoginSection(model: model),
+            RegisterSection(model: model),
           ],
         ),
       ),

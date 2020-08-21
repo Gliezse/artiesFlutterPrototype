@@ -1,3 +1,5 @@
+import 'package:arties_flutter_prototype/providers/auth/auth_provider.dart';
+import 'package:arties_flutter_prototype/providers/root_provider.dart';
 import 'package:arties_flutter_prototype/scoped_model/base_scoped_model.dart';
 import 'package:arties_flutter_prototype/scoped_model/models/general/user_model.dart';
 import 'package:arties_flutter_prototype/views/home/model/home_page_model.dart';
@@ -8,6 +10,10 @@ GetIt locator = GetIt();
 
 // Se declaran propiedades y clases a las que hara referencia el locator
 void setupLocator() {
+  // Providers
+  locator.registerLazySingleton<RootProvider>(() => RootProvider());
+  locator.registerLazySingleton<AuthProvider>(() => AuthProvider());
+
   // Para desarrollo más cómodo declaramos como singletons los modelos globales
   locator.registerLazySingleton<UserModel>(() => UserModel());
 

@@ -1,7 +1,12 @@
+import 'package:arties_flutter_prototype/scoped_model/models/base_model.dart';
+import 'package:arties_flutter_prototype/views/home/model/home_page_model.dart';
 import 'package:flutter/material.dart';
 
 class LoginSection extends StatelessWidget {
+  final HomePageModel model;
+
   const LoginSection({
+    this.model,
     Key key,
   }) : super(key: key);
 
@@ -12,33 +17,7 @@ class LoginSection extends StatelessWidget {
 
     return Stack(
       children: [
-        Container(
-          margin: EdgeInsets.only(top: size.height * 0.9),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
-          ),
-          width: double.infinity,
-          height: double.infinity,
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "¿Sos nuevo?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20
-                  ),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_down, 
-                  color: Colors.white
-                )
-              ],
-            ),
-          ),
-        ),
+        _buildBottomContent(size, context, radius),
         SingleChildScrollView(
           child: Container(
             width: double.infinity,
@@ -51,53 +30,95 @@ class LoginSection extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                 )),
                 SizedBox(height: size.height * 0.05),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Iniciá sesión",
-                        style: TextStyle(
-                          fontSize: 25,
-                        )  
-                      ),
-                      SizedBox(height: 20),
-                      TextField(
-                        decoration: InputDecoration(
-                          hoverColor: Colors.red,
-                          labelText: "Nombre de usuario"
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          hoverColor: Colors.red,
-                          labelText: "Contraseña"
-                        ),
-                      ),
-                      SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FlatButton(
-                            onPressed: (){},
-                            child: Text(
-                              "Continuar",
-                              style: TextStyle(
-                                fontSize: 18
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )
+                _buildForm(context)
               ],
             ),
           ),
         )
       ]
+    );
+  }
+
+  Container _buildBottomContent(Size size, BuildContext context, Radius radius) {
+    return Container(
+        margin: EdgeInsets.only(top: size.height * 0.9),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
+        ),
+        width: double.infinity,
+        height: double.infinity,
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "¿Sos nuevo?",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20
+                ),
+              ),
+              Icon(
+                Icons.keyboard_arrow_down, 
+                color: Colors.white
+              )
+            ],
+          ),
+        ),
+      );
+  }
+
+  Widget _buildForm(context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 40),
+      child: Column(
+        children: [
+          Text(
+            "Iniciá sesión",
+            style: TextStyle(
+              fontSize: 25,
+            )  
+          ),
+          SizedBox(height: 20),
+          TextField(
+            decoration: InputDecoration(
+              hoverColor: Colors.red,
+              labelText: "Nombre de usuario"
+            ),
+            keyboardType: TextInputType.emailAddress,
+            onChanged: model.setUsername
+          ),
+          TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              hoverColor: Colors.red,
+              labelText: "Contraseña"
+            ),
+            onChanged: model.setPassword
+          ),
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 20,
+                width: 20,
+                child: model.isBusy ? CircularProgressIndicator() : null,
+              ),
+              FlatButton(
+                onPressed: model.isBusy || !model.canLogin ? null : () => model.submitLogin(context),
+                child: Text(
+                  "Continuar",
+                  style: TextStyle(
+                    fontSize: 18
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
