@@ -1,4 +1,5 @@
 import 'package:arties_flutter_prototype/views/home/model/home_view_model.dart';
+import 'package:arties_flutter_prototype/views/home/widgets/profile_section.dart';
 import 'package:arties_flutter_prototype/views/scoped_base_view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class HomeView extends StatelessWidget {
         body: PageView(
           children: [
             buildDesktop(),
-            buildProfile(),
+            ProfileSection(),
           ]
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -59,14 +60,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget buildProfile() {
-  return Container(
-    child: Center(
-      child: Text(
-        "profile"
-      ),
-    ),
-  );
 }

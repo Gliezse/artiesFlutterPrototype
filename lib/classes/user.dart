@@ -42,4 +42,6 @@ class User {
         "email": email,
         "country": country,
     };
+
+    String get fullName => "$firstName $lastName";
 }
