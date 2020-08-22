@@ -1,9 +1,8 @@
-import 'package:arties_flutter_prototype/scoped_model/models/base_model.dart';
-import 'package:arties_flutter_prototype/views/home/model/home_page_model.dart';
+import 'package:arties_flutter_prototype/views/login/model/login_page_model.dart';
 import 'package:flutter/material.dart';
 
 class LoginSection extends StatelessWidget {
-  final HomePageModel model;
+  final LoginPageModel model;
 
   const LoginSection({
     this.model,

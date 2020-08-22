@@ -1,10 +1,10 @@
 import 'package:arties_flutter_prototype/providers/auth/auth_provider.dart';
 import 'package:arties_flutter_prototype/scoped_model/models/base_model.dart';
 import 'package:arties_flutter_prototype/service_locator.dart';
-import 'package:arties_flutter_prototype/views/yeet/yeet_view.dart';
+import 'package:arties_flutter_prototype/views/home/home_view.dart';
 import 'package:flutter/material.dart';
 
-class HomePageModel extends BaseModel {
+class LoginPageModel extends BaseModel {
 
   AuthProvider authProvider = locator<AuthProvider>();
 
@@ -31,7 +31,7 @@ class HomePageModel extends BaseModel {
     bool success = await authProvider.login(_username, _password);
     if (success) {
       setState(ViewState.Retrieved);
-      Navigator.pushReplacementNamed(context, YeetView.route);
+      Navigator.pushReplacementNamed(context, HomeView.route);
     } else {
       setState(ViewState.Error);
     }

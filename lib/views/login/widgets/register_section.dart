@@ -1,9 +1,9 @@
-import 'package:arties_flutter_prototype/views/home/model/home_page_model.dart';
+import 'package:arties_flutter_prototype/views/login/model/login_page_model.dart';
 import 'package:flutter/material.dart';
 
 class RegisterSection extends StatelessWidget {
 
-  final HomePageModel model;
+  final LoginPageModel model;
 
   const RegisterSection({
     Key key,
