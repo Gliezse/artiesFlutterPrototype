@@ -6,8 +6,9 @@ class BaseView<T extends Model> extends StatefulWidget {
   
   final ScopedModelDescendantBuilder<T> _builder;
   final Function(T) onModelReady;
+  final T embebbedModel;
 
-  const BaseView({ ScopedModelDescendantBuilder<T> builder, this.onModelReady }) : _builder = builder;
+  const BaseView({ ScopedModelDescendantBuilder<T> builder, this.onModelReady, this.embebbedModel }) : _builder = builder;
 
   @override
   _BaseViewState<T> createState() => _BaseViewState<T>();
@@ -15,10 +16,12 @@ class BaseView<T extends Model> extends StatefulWidget {
 
 class _BaseViewState<T extends Model> extends State<BaseView<T>> {
 
-  T _model = locator<T>();
+  T _model;
 
   @override
   void initState() {
+    _model = widget.embebbedModel == null ? locator<T>() : widget.embebbedModel;
+    
     if (widget.onModelReady != null) {
       widget.onModelReady(_model);
     } 

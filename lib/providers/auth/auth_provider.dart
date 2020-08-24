@@ -33,4 +33,12 @@ class AuthProvider {
       return true;
     }
   }
+
+  Future<Response> registerStep1(String username, String email) async {
+    Request request = Request(activityId: "user.register.step1");
+    request.addParam("username", username);
+    request.addParam("email", email);
+    
+    return await rootProvider.callAnonymous(request);
+  }
 }

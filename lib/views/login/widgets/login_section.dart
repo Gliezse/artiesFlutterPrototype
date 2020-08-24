@@ -1,4 +1,6 @@
 import 'package:arties_flutter_prototype/views/login/model/login_page_model.dart';
+import 'package:arties_flutter_prototype/views/register/register_step1_view.dart';
+import 'package:arties_flutter_prototype/views/widgets/button_with_loading.dart';
 import 'package:flutter/material.dart';
 
 class LoginSection extends StatelessWidget {
@@ -47,22 +49,28 @@ class LoginSection extends StatelessWidget {
         ),
         width: double.infinity,
         height: double.infinity,
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "¿Sos nuevo?",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20
+        child: FlatButton(
+          onPressed: () => Navigator.pushNamed(context, RegisterStep1View.route),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "¿No tenés cuenta?",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.keyboard_arrow_down, 
-                color: Colors.white
-              )
-            ],
+                Text(
+                  "¡Tocá acá para registrarte!",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -97,24 +105,11 @@ class LoginSection extends StatelessWidget {
             onChanged: model.setPassword
           ),
           SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 20,
-                width: 20,
-                child: model.isBusy ? CircularProgressIndicator() : null,
-              ),
-              FlatButton(
-                onPressed: model.isBusy || !model.canLogin ? null : () => model.submitLogin(context),
-                child: Text(
-                  "Continuar",
-                  style: TextStyle(
-                    fontSize: 18
-                  ),
-                ),
-              ),
-            ],
+          ButtonWithLoading(
+            isLoading: model.isBusy,
+            disabled: !model.canLogin,
+            onPressed: () => model.submitLogin(context),
+            text: "Continuar",
           )
         ],
       ),

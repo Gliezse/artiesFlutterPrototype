@@ -33,6 +33,11 @@ class RegisterSection extends StatelessWidget {
                       fontSize: 50,
                       color: Colors.white
                     )
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      fillColor: Colors.green
+                    ),
                   )
                 ],
               ),

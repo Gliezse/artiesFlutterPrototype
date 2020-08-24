@@ -26,5 +26,9 @@ class Response {
     );  
   }
 
+  bool get isWarning => code.contains("W");
+  bool get isSuccess => code.contains("S");
+  bool get isError => code.contains("E");
+
 
 }
