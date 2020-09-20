@@ -1,18 +1,19 @@
-import 'package:arties_flutter_prototype/views/register/model/register_step1_model.dart';
+import 'package:arties_flutter_prototype/views/register/model/register_step3_model.dart';
 import 'package:arties_flutter_prototype/views/register/widgets/register_scaffold.dart';
 import 'package:arties_flutter_prototype/views/scoped_base_view.dart';
 import 'package:arties_flutter_prototype/views/widgets/button_with_loading.dart';
 import 'package:arties_flutter_prototype/views/widgets/main_container.dart';
 import 'package:flutter/material.dart';
 
-class RegisterStep1View extends StatelessWidget {
+class RegisterStep3View extends StatelessWidget {
 
-  static final String route = "/register.step1";
+  static final String route = "/register.step3";
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<RegisterStep1Model>(
-      embebbedModel: RegisterStep1Model(),
+    return BaseView<RegisterStep3Model>(
+      embebbedModel: RegisterStep3Model(),
+      onModelReady: (model) => model.setLastViewData(ModalRoute.of(context).settings.arguments),
       builder: (context, child, model) => RegisterScaffold(
         child: MainContainer(
           child: Form(
@@ -21,7 +22,7 @@ class RegisterStep1View extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Completá estos datos básicos para empezar a crear tu cuenta",
+                  "Ya casi terminamos, ${model.firstName}.\nSolo falta elegir una contraseña segura para tu cuenta",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20
@@ -29,24 +30,21 @@ class RegisterStep1View extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 TextFormField(
-                  controller: model.usernameFieldController,
-                  autocorrect: false,
-                  validator: model.usernameValidator,
+                  obscureText: true,
+                  controller: model.passwordFieldController,
                   decoration: InputDecoration(
-                    labelText: "Crea un nombre de usuario",
-                    helperText: "Debe tener al menos 6 caracteres",
-                    errorText: model.usernameFieldErrorText,
-                  ),              
+                    labelText: "Contraseña",
+                  ),
+                  validator: model.passwordValidator,
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: model.emailFieldController,
-                  validator: model.emailValidator,
-                  keyboardType: TextInputType.emailAddress,
+                  obscureText: true,
+                  controller: model.passwordConfirmationFieldController,
                   decoration: InputDecoration(
-                    labelText: "Ingresa tu mail",
-                    errorText: model.mailFieldErrorText,
-                  ),              
+                    labelText: "Reingresá la contraseña",
+                  ),          
+                  validator: model.passwordConfirmationValidator,
                 ),
                 SizedBox(height: 30),
                 ButtonWithLoading(

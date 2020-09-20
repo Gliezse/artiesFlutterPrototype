@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
           //scaffoldBackgroundColor: Color.fromRGBO(246, 240, 237, 1)
           scaffoldBackgroundColor: Color.fromRGBO(242, 244, 246, 1),
           fontFamily: "Alata",
-          primaryColor: Color.fromRGBO(50, 74, 209, 1)
+          primaryColor: Color.fromRGBO(50, 74, 209, 1),
+          primarySwatch: Colors.blue
         ),
       ),
     );

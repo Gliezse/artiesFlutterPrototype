@@ -21,6 +21,8 @@ class AuthProvider {
 
     Response response = await rootProvider.callAnonymous(request);
 
+    print(response.code);
+
     if (response.code != "001S") {
       return false;
     } else {
@@ -39,6 +41,27 @@ class AuthProvider {
     request.addParam("username", username);
     request.addParam("email", email);
     
+    return await rootProvider.callAnonymous(request);
+  }
+
+  Future<Response> registerStep2(String firstName, String lastName, String country) async {
+    Request request = Request(activityId: "user.register.step2");
+    request.addParam("firstName", firstName);
+    request.addParam("lastName", lastName);
+    request.addParam("country", country); 
+  
+    return await rootProvider.callAnonymous(request);
+  }
+
+  Future<Response> registerStep3(String username, String email, String firstName, String lastName, String country, String password) async {
+    Request request = Request(activityId: "user.register.step3");
+    request.addParam("username", username);
+    request.addParam("email", email);
+    request.addParam("firstName", firstName);
+    request.addParam("lastName", lastName);
+    request.addParam("country", country);
+    request.addParam("password", password);
+  
     return await rootProvider.callAnonymous(request);
   }
 }

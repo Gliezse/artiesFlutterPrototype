@@ -43,6 +43,8 @@ class RegisterStep1Model extends FormBaseModel {
           );
         });
 
+        setState(ViewState.Retrieved);
+
         Navigator.pushNamed(
           context, 
           RegisterStep2View.route,
