@@ -8,6 +8,8 @@ import 'package:arties_flutter_prototype/views/register/register_success_view.da
 import 'package:flutter/material.dart';
 import 'package:wc_form_validators/wc_form_validators.dart';
 
+import '../../login/login_view.dart';
+
 class RegisterStep3Model extends FormBaseModel {
 
   AuthProvider authProvider = locator<AuthProvider>();
@@ -46,9 +48,10 @@ class RegisterStep3Model extends FormBaseModel {
       } else {
         setState(ViewState.Retrieved);
 
-        Navigator.pushNamed(
+        Navigator.pushNamedAndRemoveUntil(
           context, 
           RegisterSuccessView.route,
+          ModalRoute.withName(LoginView.route),
           arguments: {
             "firstName": firstName,
           }

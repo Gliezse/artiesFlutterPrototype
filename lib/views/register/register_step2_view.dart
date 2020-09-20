@@ -35,6 +35,7 @@ class RegisterStep2View extends StatelessWidget {
                 SizedBox(height: 30),
                 TextFormField(
                   controller: model.firstNameFieldController,
+                  textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     labelText: "Tu primer nombre",
                   ),
@@ -43,6 +44,7 @@ class RegisterStep2View extends StatelessWidget {
                 SizedBox(height: 20),
                 TextFormField(
                   controller: model.lastNameFieldController,
+                  textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                     labelText: "Tu apellido",
                   ),          

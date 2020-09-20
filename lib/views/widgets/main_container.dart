@@ -13,10 +13,8 @@ class MainContainer extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      child: SingleChildScrollView(
-        child: child,
-        padding: customEdgeInsets ?? EdgeInsets.symmetric(horizontal: 16),
-      ),
+      padding: customEdgeInsets ?? EdgeInsets.symmetric(horizontal: 16),
+      child: child,
     );
   }
 }

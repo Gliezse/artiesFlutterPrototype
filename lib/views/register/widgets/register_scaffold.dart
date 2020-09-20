@@ -34,6 +34,7 @@ class RegisterScaffold extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        leading: Container(),
       );
   }
 }

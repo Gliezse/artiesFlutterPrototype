@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Request {
 
-  final _url = "http://192.168.0.17:2331/api/"; 
+  final _url = "http://192.168.0.102:2331/api/"; 
 
   String activityId;
   Map<String, dynamic> bodyParams = Map();
