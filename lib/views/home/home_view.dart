@@ -12,28 +12,7 @@ class HomeView extends StatelessWidget {
     return BaseView<HomeViewModel>(
       builder: (context, child, model) => Scaffold(
         appBar: buildAppBar(context),
-        body: PageView(
-          children: [
-            buildDesktop(),
-            ProfileSection(),
-          ]
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.sort),
-              title: Text(
-                "Desktop"
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text(
-                "Perfil"
-              ),
-            ),
-          ],
-        ),
+        body: buildDesktop(),
       ),
     );
   }

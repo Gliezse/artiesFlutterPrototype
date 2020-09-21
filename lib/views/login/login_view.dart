@@ -12,13 +12,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<LoginPageModel>(
       builder: (context, child, model) => Scaffold(
-        body: PageView(
-          scrollDirection: Axis.vertical,
-          children: [
-            LoginSection(model: model),
-            RegisterSection(model: model),
-          ],
-        ),
+        body: LoginSection(model: model),
       ),
     );
   }
